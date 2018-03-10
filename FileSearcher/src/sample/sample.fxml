@@ -18,16 +18,16 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="159.0" prefWidth="73.0">
                      <children>
-                        <TextField layoutX="7.0" layoutY="14.0" prefHeight="25.0" prefWidth="103.0" />
-                        <Button layoutX="33.0" layoutY="46.0" mnemonicParsing="false" text="Button" />
-                        <CheckBox layoutX="22.0" layoutY="84.0" mnemonicParsing="false" text="CheckBox" />
-                        <CheckBox layoutX="22.0" layoutY="111.0" mnemonicParsing="false" text="CheckBox" />
-                        <CheckBox layoutX="22.0" layoutY="138.0" mnemonicParsing="false" text="CheckBox" />
+                        <TextField layoutX="7.0" layoutY="14.0" prefHeight="25.0" prefWidth="103.0" fx:id="textfield"/>
+                        <Button layoutX="33.0" layoutY="46.0" mnemonicParsing="false" text="Button" fx:id="button"/>
+                        <CheckBox layoutX="22.0" layoutY="84.0" mnemonicParsing="false" text="CheckBox1" fx:id="checkbox1"/>
+                        <CheckBox layoutX="22.0" layoutY="111.0" mnemonicParsing="false" text="CheckBox2" fx:id="checkbox2"/>
+                        <CheckBox layoutX="22.0" layoutY="138.0" mnemonicParsing="false" text="CheckBox3" fx:id="checkbox3"/>
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <ListView layoutX="-5.0" layoutY="-8.0" prefHeight="200.0" prefWidth="127.0" />
+                        <ListView layoutX="-5.0" layoutY="-8.0" prefHeight="200.0" prefWidth="127.0" fx:id="listview"/>
                      </children></AnchorPane>
               </items>
             </SplitPane>
