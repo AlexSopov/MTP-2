@@ -1,33 +1,71 @@
 package searchers;
 
 import searchers.strategies.FileSearchStrategy;
+import searchers.strategies.MacOsFileSearcher;
 import searchers.strategies.WindowsFileSearcher;
-import validators.RequestValidator;
+import validators.*;
 
 public class FileSearcherDefault extends FileSearcher {
     private FileSearchStrategy fileSearchStrategy;
+    private RequestValidator requestValidator;
 
-    public FileSearcherDefault() {
-        this.initializeFileSearcherStrategy();
-    }
 
-    public void executeSearch(RequestValidator requestValidator) {
+    public void executeSearch(FileValidationRequest fileValidationRequest) {
+        this.initializeFileSearcherStrategy(fileValidationRequest);
+
         fileSearchStrategy.setFileSearchCallback(this::onFileSearchEvent);
         fileSearchStrategy.ExecuteFileSearch(requestValidator);
     }
 
-    private void initializeFileSearcherStrategy() {
+    private void initializeFileSearcherStrategy(FileValidationRequest fileValidationRequest) {
         String operatingSystemName = System.getProperty("os.name").toLowerCase();
 
         if (operatingSystemName.contains("win")) {
-            this.fileSearchStrategy = new WindowsFileSearcher();
+            this.initializeForWindows(fileValidationRequest);
         } else if (operatingSystemName.contains("mac")) {
-            this.fileSearchStrategy = new WindowsFileSearcher();
+            this.initializeForMac(fileValidationRequest);
         } else if (operatingSystemName.contains("nix") || operatingSystemName.contains("nux") || operatingSystemName.indexOf("aix") > 0) {
-            this.fileSearchStrategy = new WindowsFileSearcher();
+            this.initializeForUnix(fileValidationRequest);
         } else {
             throw new UnsupportedOperationException(
-                    String.format("File searcher is not implemented for operating system type: %s", operatingSystemName));
+                    String.format("File searcher is not implemented for operating system: %s", operatingSystemName));
         }
+    }
+
+    private void initializeForWindows(FileValidationRequest fileValidationRequest) {
+        this.fileSearchStrategy = new WindowsFileSearcher();
+
+        RequestValidator nameRequestValidator = new NameRequestValidator(fileValidationRequest);
+        RequestValidator regExRequestValidator = new RegExRequestValidator(fileValidationRequest);
+        RequestValidator infoRequestValidator = new InformationRequestValidator(fileValidationRequest);
+        RequestValidator contentRequestValidator = new ContentRequestValidator(fileValidationRequest);
+
+        nameRequestValidator.setSuccessor(regExRequestValidator);
+        regExRequestValidator.setSuccessor(infoRequestValidator);
+        infoRequestValidator.setSuccessor(contentRequestValidator);
+
+        requestValidator = nameRequestValidator;
+    }
+
+    private void initializeForMac(FileValidationRequest fileValidationRequest) {
+        this.fileSearchStrategy = new MacOsFileSearcher();
+
+        RequestValidator nameRequestValidator = new NameRequestValidator(fileValidationRequest);
+        RequestValidator regExRequestValidator = new RegExRequestValidator(fileValidationRequest);
+        RequestValidator contentRequestValidator = new ContentRequestValidator(fileValidationRequest);
+
+        nameRequestValidator.setSuccessor(regExRequestValidator);
+        regExRequestValidator.setSuccessor(contentRequestValidator);
+
+        requestValidator = nameRequestValidator;
+    }
+
+    private void initializeForUnix(FileValidationRequest fileValidationRequest) {
+        RequestValidator nameRequestValidator = new NameRequestValidator(fileValidationRequest);
+        RequestValidator regExRequestValidator = new RegExRequestValidator(fileValidationRequest);
+
+        nameRequestValidator.setSuccessor(regExRequestValidator);
+
+        requestValidator = nameRequestValidator;
     }
 }

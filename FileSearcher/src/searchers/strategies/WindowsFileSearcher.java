@@ -10,10 +10,16 @@ public class WindowsFileSearcher extends FileSearchStrategy {
 
     @Override
     public void ExecuteFileSearch(RequestValidator requestValidator) {
-        File[] fileSystemRoots = File.listRoots();
+        String startSearchSpecificPath = this.getSearchFromSpecificPath(requestValidator);
 
-        for (File root : fileSystemRoots) {
-            retrieveFilesAndSubdirectories(root, requestValidator);
+        if (startSearchSpecificPath.isEmpty()) {
+            File[] fileSystemRoots = File.listRoots();
+
+            for (File root : fileSystemRoots) {
+                retrieveFilesAndSubdirectories(root, requestValidator);
+            }
+        } else {
+            retrieveFilesAndSubdirectories(new File(startSearchSpecificPath), requestValidator);
         }
     }
 
@@ -38,9 +44,8 @@ public class WindowsFileSearcher extends FileSearchStrategy {
 
             for (File file : currentRootSubItems) {
 
-                this.raiseFileSearcherCallback(FileSearchEventType.FILE_RETRIEVED, root.getAbsolutePath());
+                this.raiseFileSearcherCallback(FileSearchEventType.FILE_RETRIEVED, file.getAbsolutePath());
 
-                // Execute validation
                 if (requestValidator.isFileSatisfiesRequest(file)) {
                     this.raiseFileSearcherCallback(FileSearchEventType.FILE_FOUND, file.getAbsolutePath());
                 }
@@ -50,5 +55,9 @@ public class WindowsFileSearcher extends FileSearchStrategy {
                 }
             }
         }
+    }
+
+    private String getSearchFromSpecificPath(RequestValidator requestValidator) {
+        return requestValidator.getFileValidationRequest().getStartSearchFrom();
     }
 }

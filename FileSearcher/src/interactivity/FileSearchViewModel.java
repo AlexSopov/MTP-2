@@ -24,12 +24,7 @@ class FileSearchViewModel implements FileSearchObserver {
     void ExecuteSearch(FileValidationRequest fileValidationRequest) {
 
         // TODO: remove stub
-        fileSearcher.executeSearch(new RequestValidator(fileValidationRequest) {
-            @Override
-            public boolean isFileSatisfiesRequest(File file) {
-                return true;
-            }
-        });
+        fileSearcher.executeSearch(new FileValidationRequest("1.txt"));
     }
 
     @Override
