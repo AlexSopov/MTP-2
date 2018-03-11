@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
@@ -9,13 +10,15 @@
 
 <SplitPane dividerPositions="0.25125628140703515" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
   <items>
-    <AnchorPane minHeight="100.0" minWidth="0.0" prefHeight="136.0" prefWidth="598.0" maxHeight="100">
+    <AnchorPane maxHeight="100" minHeight="100.0" minWidth="0.0" prefHeight="136.0" prefWidth="598.0">
          <children>
-            <TextField layoutX="102.0" layoutY="14.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" fx:id="upperTextField"/>
-            <TextField layoutX="225.0" layoutY="36.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0" fx:id="bottomTextField"/>
-            <Button layoutX="327.0" layoutY="60.0" mnemonicParsing="false" text="Button" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="65.0" fx:id="button"/>
-            <CheckBox layoutX="26.0" layoutY="69.0" mnemonicParsing="false" text="CheckBox" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="65.0" fx:id="checkbox1"/>
-            <CheckBox layoutX="123.0" layoutY="69.0" mnemonicParsing="false" text="CheckBox" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="65.0" fx:id="checkbox2"/>
+            <TextField fx:id="upperTextField" layoutX="102.0" layoutY="14.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+            <TextField fx:id="bottomTextField" layoutX="225.0" layoutY="36.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0" />
+            <Button fx:id="button" layoutX="327.0" layoutY="60.0" mnemonicParsing="false" text="Search" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="65.0" />
+            <CheckBox fx:id="checkbox1" layoutX="26.0" layoutY="69.0" mnemonicParsing="false" text="Search in file info" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="65.0" />
+            <CheckBox fx:id="checkbox2" layoutX="123.0" layoutY="69.0" mnemonicParsing="false" text="Search in file content" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="65.0" />
+            <Label layoutX="30.0" layoutY="9.0" text="Searh for:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0"/>
+            <Label layoutX="42.0" layoutY="39.0" text="Search for root:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="40.0"/>
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
          <children>
