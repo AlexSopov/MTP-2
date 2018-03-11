@@ -1,4 +1,4 @@
-package searchers;
+package searchers.callback;
 
 public enum FileSearchEventType {
     FILE_FOUND,

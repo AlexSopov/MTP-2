@@ -2,6 +2,16 @@ package validators;
 
 import java.io.File;
 
-public interface RequestValidator {
-    public boolean isFileValid(File file, FileValidationRequest fileValidationRequest);
+public abstract class RequestValidator {
+    private RequestValidator Successor;
+
+    abstract boolean isFileSatisfiesRequest(File file, FileValidationRequest fileValidationRequest);
+
+    protected RequestValidator getSuccessor() {
+        return Successor;
+    }
+
+    protected void setSuccessor(RequestValidator successor) {
+        Successor = successor;
+    }
 }

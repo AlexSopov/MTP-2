@@ -1,4 +1,4 @@
-package searchers;
+package searchers.callback;
 
 public class FileSearchEventArgs {
     private FileSearchEventType fileSearchEventType;
