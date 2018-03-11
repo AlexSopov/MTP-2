@@ -18,17 +18,18 @@ public class Controller {
     private Button button;
 
     @FXML
-    private CheckBox checkbox1;
+    private CheckBox checkBox1;
     @FXML
-    private CheckBox checkbox2;
-    @FXML
-    private CheckBox checkbox3;
+    private CheckBox checkBox2;
 
     @FXML
-    private ListView listview;
+    private ListView listView;
 
     @FXML
-    private TextField textfield;
+    private TextField upperTextField;
+
+    @FXML
+    private TextField bottomTextField;
 
     @FXML
     public void initialize(){
@@ -39,8 +40,8 @@ public class Controller {
                 // TODO: remove stub
                 fileSearchViewModel.ExecuteSearch(null);
 
-                if(checkbox3.isSelected()) {
-                    button.setText(textfield.getText());
+                if(checkBox2.isSelected()) {
+                    button.setText(bottomTextField.getText());
                 }
             }
         });

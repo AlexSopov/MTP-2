@@ -11,11 +11,11 @@
   <items>
     <AnchorPane minHeight="100.0" minWidth="0.0" prefHeight="136.0" prefWidth="598.0" maxHeight="100">
          <children>
-            <TextField layoutX="102.0" layoutY="14.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-            <TextField layoutX="225.0" layoutY="36.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0" />
-            <Button layoutX="327.0" layoutY="60.0" mnemonicParsing="false" text="Button" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="65.0"/>
-            <CheckBox layoutX="26.0" layoutY="69.0" mnemonicParsing="false" text="CheckBox" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="65.0"/>
-            <CheckBox layoutX="123.0" layoutY="69.0" mnemonicParsing="false" text="CheckBox" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="65.0"/>
+            <TextField layoutX="102.0" layoutY="14.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" fx:id="upperTextField"/>
+            <TextField layoutX="225.0" layoutY="36.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0" fx:id="bottomTextField"/>
+            <Button layoutX="327.0" layoutY="60.0" mnemonicParsing="false" text="Button" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="65.0" fx:id="button"/>
+            <CheckBox layoutX="26.0" layoutY="69.0" mnemonicParsing="false" text="CheckBox" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="65.0" fx:id="checkbox1"/>
+            <CheckBox layoutX="123.0" layoutY="69.0" mnemonicParsing="false" text="CheckBox" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="65.0" fx:id="checkbox2"/>
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
          <children>
