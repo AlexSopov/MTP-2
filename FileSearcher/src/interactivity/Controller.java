@@ -1,5 +1,7 @@
 package interactivity;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,45 +9,44 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import validators.FileValidationRequest;
 
 public class Controller {
 
-    // TODO split deaclaration and initialization
-    private FileSearchViewModel fileSearchViewModel = new FileSearchViewModel();
-
+    private FileSearchViewModel fileSearchViewModel;
 
     @FXML
-    private Button button;
+    private Button executeSearchButton;
 
     @FXML
-    private CheckBox checkBox1;
+    private CheckBox searchInFileInfoButton;
     @FXML
-    private CheckBox checkBox2;
+    private CheckBox searchInDescriptionButton;
 
     @FXML
-    private ListView listView;
+    private ListView foundItems;
 
     @FXML
-    private TextField upperTextField;
+    private TextField searchForValue;
 
     @FXML
-    private TextField bottomTextField;
+    private TextField searchFromValue;
 
     @FXML
     public void initialize(){
-        button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+        fileSearchViewModel = new FileSearchViewModel();
+        foundItems = new ListView();
+
+        executeSearchButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
 
-                // TODO: remove stub
-                fileSearchViewModel.ExecuteSearch(null);
+                ObservableList<String> items =FXCollections.observableArrayList (
+                        "Single", "Double", "Suite", "Family App");
+                foundItems.setItems(items);
 
-                if(checkBox2.isSelected()) {
-                    button.setText(bottomTextField.getText());
-                }
+                fileSearchViewModel.ExecuteSearch(searchForValue.getText(), searchFromValue.getText());
             }
         });
-
     }
-
 }

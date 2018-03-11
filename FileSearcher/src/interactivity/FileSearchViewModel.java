@@ -21,10 +21,8 @@ class FileSearchViewModel implements FileSearchObserver {
         fileSearcher = new FileSearcherAsyncDecorator(defaultFileSearcher);
     }
 
-    void ExecuteSearch(FileValidationRequest fileValidationRequest) {
-
-        // TODO: remove stub
-        fileSearcher.executeSearch(new FileValidationRequest("1.txt"));
+    void ExecuteSearch(String searchForValue, String searchFromRootValue) {
+        fileSearcher.executeSearch(new FileValidationRequest(searchForValue, searchFromRootValue));
     }
 
     @Override
