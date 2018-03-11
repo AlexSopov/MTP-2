@@ -10,6 +10,10 @@ import javafx.scene.control.TextField;
 
 public class Controller {
 
+    // TODO split deaclaration and initialization
+    private FileSearchViewModel fileSearchViewModel = new FileSearchViewModel();
+
+
     @FXML
     private Button button;
 
@@ -31,6 +35,10 @@ public class Controller {
         button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+
+                // TODO: remove stub
+                fileSearchViewModel.ExecuteSearch(null);
+
                 if(checkbox3.isSelected()) {
                     button.setText(textfield.getText());
                 }

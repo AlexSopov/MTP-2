@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class FileSearcher implements FileSearchObservable {
     private List<FileSearchObserver> observers;
 
-    public FileSearcher() {
+    FileSearcher() {
         this.observers = new ArrayList<>();
     }
 
@@ -20,12 +20,13 @@ public abstract class FileSearcher implements FileSearchObservable {
     public void addFileSearchObserver(FileSearchObserver fileSearchObserver) {
         this.validateFileSearchObserver(fileSearchObserver);
         this.observers.add(fileSearchObserver);
-
     }
+
     public void removeFileSearchObserver(FileSearchObserver fileSearchObserver) {
         this.validateFileSearchObserver(fileSearchObserver);
         this.observers.remove(fileSearchObserver);
     }
+
     public void notifyObservers(FileSearchEventArgs fileSearchEventArgs) {
         for (FileSearchObserver observer : observers) {
             observer.onFileSearchEvent(fileSearchEventArgs);
