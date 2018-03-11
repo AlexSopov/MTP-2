@@ -1,6 +1,6 @@
 package searchers;
 
-import validators.RequestValidator;
+import validators.FileValidationRequest;
 
 public class FileSearcherAsyncDecorator extends FileSearcherDecorator {
 
@@ -9,22 +9,22 @@ public class FileSearcherAsyncDecorator extends FileSearcherDecorator {
     }
 
     @Override
-    public void executeSearch(RequestValidator requestValidator) {
-        Thread executiveThread = new Thread(new AsyncSearcher(requestValidator));
+    public void executeSearch(FileValidationRequest fileValidationRequest) {
+        Thread executiveThread = new Thread(new AsyncSearcher(fileValidationRequest));
         executiveThread.start();
     }
 
     private class AsyncSearcher implements Runnable {
 
-        private RequestValidator requestValidator;
+        private FileValidationRequest fileValidationRequest;
 
-        AsyncSearcher(RequestValidator requestValidator) {
-            this.requestValidator = requestValidator;
+        AsyncSearcher(FileValidationRequest fileValidationRequest) {
+            this.fileValidationRequest = fileValidationRequest;
         }
 
         @Override
         public void run() {
-            fileSearcher.executeSearch(requestValidator);
+            fileSearcher.executeSearch(fileValidationRequest);
         }
     }
 }

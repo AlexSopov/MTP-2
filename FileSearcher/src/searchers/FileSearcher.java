@@ -3,6 +3,7 @@ package searchers;
 import searchers.callback.FileSearchEventArgs;
 import searchers.infrastructure.FileSearchObservable;
 import searchers.infrastructure.FileSearchObserver;
+import validators.FileValidationRequest;
 import validators.RequestValidator;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public abstract class FileSearcher implements FileSearchObservable {
         this.observers = new ArrayList<>();
     }
 
-    public abstract void executeSearch(RequestValidator requestValidator);
+    public abstract void executeSearch(FileValidationRequest requestValidator);
 
     public void addFileSearchObserver(FileSearchObserver fileSearchObserver) {
         this.validateFileSearchObserver(fileSearchObserver);

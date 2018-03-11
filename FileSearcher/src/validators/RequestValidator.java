@@ -3,8 +3,25 @@ package validators;
 import java.io.File;
 
 public abstract class RequestValidator {
-    private RequestValidator Successor;
-    private FileValidationRequest fileValidationRequest;
+    private RequestValidator successor;
+
+    public FileValidationRequest getFileValidationRequest() {
+        return fileValidationRequest;
+    }
+
+    public void setFileValidationRequest(FileValidationRequest fileValidationRequest) {
+        this.fileValidationRequest = fileValidationRequest;
+    }
+
+    public RequestValidator getSuccessor() {
+        return successor;
+    }
+
+    public void setSuccessor(RequestValidator successor) {
+        this.successor = successor;
+    }
+
+    protected FileValidationRequest fileValidationRequest;
 
     public RequestValidator(FileValidationRequest fileValidationRequest) {
         this.fileValidationRequest = fileValidationRequest;
@@ -12,11 +29,9 @@ public abstract class RequestValidator {
 
     public abstract boolean isFileSatisfiesRequest(File file);
 
-    protected RequestValidator getSuccessor() {
-        return Successor;
+    protected boolean handleBySuccessor(File file) {
+        return successor != null && successor.isFileSatisfiesRequest(file);
     }
 
-    protected void setSuccessor(RequestValidator successor) {
-        Successor = successor;
-    }
+
 }
