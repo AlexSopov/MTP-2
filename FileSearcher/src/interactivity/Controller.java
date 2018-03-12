@@ -21,7 +21,7 @@ public class Controller {
     @FXML
     private CheckBox searchInFileInfoButton;
     @FXML
-    private CheckBox searchInDescriptionButton;
+    private CheckBox searchInContentButton;
 
     @FXML
     private ListView foundItems;
@@ -44,7 +44,11 @@ public class Controller {
             public void handle(MouseEvent mouseEvent) {
                 foundItemsData.clear();
 
-                fileSearchViewModel.ExecuteSearch(searchForValue.getText(), searchFromValue.getText(), foundItemsData);
+                FileValidationRequest fileValidationRequest = new FileValidationRequest(searchForValue.getText(), searchFromValue.getText());
+                fileValidationRequest.setSearchInContent(searchInContentButton.isSelected());
+                fileValidationRequest.setSearchInDescription(searchInFileInfoButton.isSelected());
+
+                fileSearchViewModel.ExecuteSearch(fileValidationRequest, foundItemsData);
             }
         });
     }

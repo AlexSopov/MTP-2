@@ -23,9 +23,9 @@ class FileSearchViewModel implements FileSearchObserver {
         fileSearcher = new FileSearcherAsyncDecorator(defaultFileSearcher);
     }
 
-    void ExecuteSearch(String searchForValue, String searchFromRootValue, ObservableList<String> foundItems) {
+    void ExecuteSearch(FileValidationRequest fileValidationRequest, ObservableList<String> foundItems) {
         this.foundItems = foundItems;
-        fileSearcher.executeSearch(new FileValidationRequest(searchForValue, searchFromRootValue));
+        fileSearcher.executeSearch(fileValidationRequest);
     }
 
     @Override
