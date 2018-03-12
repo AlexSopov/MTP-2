@@ -46,11 +46,11 @@ class FileSearchViewModel implements FileSearchObserver {
 
     private void OnFileSearchItemFound(String value) {
         foundItems.add(value);
-        System.out.println(String.format("Item found: %s", value));
+        //System.out.println(String.format("Item found: %s", value));
     }
 
     private void OnFileSearchItemRetrieved(String value) {
-        System.out.println(String.format("Item retrieved: %s", value));
+        //System.out.println(String.format("Item retrieved: %s", value));
     }
 
     private void OnFileSearchError(String value) {
