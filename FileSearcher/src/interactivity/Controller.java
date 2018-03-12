@@ -36,16 +36,15 @@ public class Controller {
     public void initialize(){
         fileSearchViewModel = new FileSearchViewModel();
 
+        ObservableList<String> foundItemsData = FXCollections.observableArrayList();
+        foundItems.setItems(foundItemsData);
+
         executeSearchButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                foundItemsData.clear();
 
-                ObservableList<String> items =FXCollections.observableArrayList (
-                        "Single", "Double", "Suite", "Family App");
-                foundItems.setItems(items);
-                foundItems.refresh();
-
-                //fileSearchViewModel.ExecuteSearch(searchForValue.getText(), searchFromValue.getText());
+                fileSearchViewModel.ExecuteSearch(searchForValue.getText(), searchFromValue.getText(), foundItemsData);
             }
         });
     }

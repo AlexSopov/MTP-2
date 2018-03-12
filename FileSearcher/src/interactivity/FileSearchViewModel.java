@@ -1,5 +1,6 @@
 package interactivity;
 
+import javafx.collections.ObservableList;
 import searchers.FileSearcher;
 import searchers.FileSearcherAsyncDecorator;
 import searchers.FileSearcherDefault;
@@ -13,15 +14,17 @@ import java.io.File;
 class FileSearchViewModel implements FileSearchObserver {
 
     private FileSearcher fileSearcher;
+    private ObservableList<String> foundItems;
 
     FileSearchViewModel() {
         FileSearcher defaultFileSearcher = new FileSearcherDefault();
-        defaultFileSearcher.addFileSearchObserver(this);
+            defaultFileSearcher.addFileSearchObserver(this);
 
         fileSearcher = new FileSearcherAsyncDecorator(defaultFileSearcher);
     }
 
-    void ExecuteSearch(String searchForValue, String searchFromRootValue) {
+    void ExecuteSearch(String searchForValue, String searchFromRootValue, ObservableList<String> foundItems) {
+        this.foundItems = foundItems;
         fileSearcher.executeSearch(new FileValidationRequest(searchForValue, searchFromRootValue));
     }
 
@@ -42,6 +45,7 @@ class FileSearchViewModel implements FileSearchObserver {
     }
 
     private void OnFileSearchItemFound(String value) {
+        foundItems.add(value);
         System.out.println(String.format("Item found: %s", value));
     }
 
