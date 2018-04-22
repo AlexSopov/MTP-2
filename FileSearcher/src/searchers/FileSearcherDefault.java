@@ -1,14 +1,13 @@
 package searchers;
 
-import searchers.strategies.FileSearchStrategy;
+import searchers.strategies.FileSearcher;
 import searchers.strategies.MacOsFileSearcher;
 import searchers.strategies.WindowsFileSearcher;
 import validators.*;
 
-public class FileSearcherDefault extends FileSearcher {
-    private FileSearchStrategy fileSearchStrategy;
+public class FileSearcherDefault extends FileSearcherBase {
+    private FileSearcher fileSearchStrategy;
     private RequestValidator requestValidator;
-
 
     public void executeSearch(FileValidationRequest fileValidationRequest) {
         this.initializeFileSearcherStrategy(fileValidationRequest);

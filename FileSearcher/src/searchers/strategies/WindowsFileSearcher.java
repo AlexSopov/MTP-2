@@ -6,7 +6,7 @@ import validators.RequestValidator;
 
 import java.io.File;
 
-public class WindowsFileSearcher extends FileSearchStrategy {
+public class WindowsFileSearcher extends FileSearcher {
 
     @Override
     public void ExecuteFileSearch(RequestValidator requestValidator) {

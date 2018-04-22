@@ -1,31 +1,28 @@
 package interactivity;
 
 import javafx.collections.ObservableList;
-import searchers.FileSearcher;
-import searchers.FileSearcherAsyncDecorator;
+import searchers.FileSearcherBase;
+import searchers.decorators.FileSearcherAsyncDecorator;
 import searchers.FileSearcherDefault;
 import searchers.callback.FileSearchEventArgs;
 import searchers.infrastructure.FileSearchObserver;
 import validators.FileValidationRequest;
-import validators.RequestValidator;
-
-import java.io.File;
 
 class FileSearchViewModel implements FileSearchObserver {
 
-    private FileSearcher fileSearcher;
+    private FileSearcherBase fileSearcherBase;
     private ObservableList<String> foundItems;
 
     FileSearchViewModel() {
-        FileSearcher defaultFileSearcher = new FileSearcherDefault();
-            defaultFileSearcher.addFileSearchObserver(this);
+        FileSearcherBase defaultFileSearcherBase = new FileSearcherDefault();
+        defaultFileSearcherBase.addFileSearchObserver(this);
 
-        fileSearcher = new FileSearcherAsyncDecorator(defaultFileSearcher);
+        fileSearcherBase = new FileSearcherAsyncDecorator(defaultFileSearcherBase);
     }
 
     void ExecuteSearch(FileValidationRequest fileValidationRequest, ObservableList<String> foundItems) {
         this.foundItems = foundItems;
-        fileSearcher.executeSearch(fileValidationRequest);
+        fileSearcherBase.executeSearch(fileValidationRequest);
     }
 
     @Override

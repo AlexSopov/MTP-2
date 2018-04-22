@@ -1,11 +1,12 @@
-package searchers;
+package searchers.decorators;
 
+import searchers.FileSearcherBase;
 import validators.FileValidationRequest;
 
 public class FileSearcherAsyncDecorator extends FileSearcherDecorator {
 
-    public FileSearcherAsyncDecorator(FileSearcher fileSearcher) {
-        super(fileSearcher);
+    public FileSearcherAsyncDecorator(FileSearcherBase fileSearcherBase) {
+        super(fileSearcherBase);
     }
 
     @Override
@@ -24,7 +25,7 @@ public class FileSearcherAsyncDecorator extends FileSearcherDecorator {
 
         @Override
         public void run() {
-            fileSearcher.executeSearch(fileValidationRequest);
+            fileSearcherBase.executeSearch(fileValidationRequest);
         }
     }
 }

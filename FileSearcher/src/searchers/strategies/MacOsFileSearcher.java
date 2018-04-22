@@ -2,9 +2,9 @@ package searchers.strategies;
 
 import validators.RequestValidator;
 
-public class MacOsFileSearcher extends FileSearchStrategy {
+public class MacOsFileSearcher extends FileSearcher {
     @Override
     public void ExecuteFileSearch(RequestValidator requestValidator) {
-        throw new UnsupportedOperationException("Doesn't implemented. Magic?");
+        throw new UnsupportedOperationException("Currently unsupported.");
     }
 }

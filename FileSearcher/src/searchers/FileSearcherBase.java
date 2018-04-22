@@ -9,10 +9,10 @@ import validators.RequestValidator;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class FileSearcher implements FileSearchObservable {
+public abstract class FileSearcherBase implements FileSearchObservable {
     private List<FileSearchObserver> observers;
 
-    FileSearcher() {
+    protected FileSearcherBase() {
         this.observers = new ArrayList<>();
     }
 
